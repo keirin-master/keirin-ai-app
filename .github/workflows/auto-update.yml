@@ -23,8 +23,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run scraper
-        run: | 
-          if [ -f data ]; then rm -f data; fi
+        run: |
           mkdir -p data
           python scraper.py
 
@@ -32,7 +31,7 @@ jobs:
         run: |
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
-          git add latest_data.csv
-          git commit -m "Auto-update latest_data.csv"
+          git add data/latest_data.csv
+          git commit -m "Auto-update latest_data.csv" || echo "No changes to commit"
           git push
         continue-on-error: true
