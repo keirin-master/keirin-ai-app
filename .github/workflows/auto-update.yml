@@ -2,8 +2,11 @@ name: Auto Update Data
 
 on:
   schedule:
-    - cron: '0 21 * * *'  # 毎日21:00（JSTだと朝6:00）に実行
-  workflow_dispatch:      # 手動実行も可能にする
+    - cron: '0 21 * * *'  # 毎日21:00 JST
+  workflow_dispatch:
+
+permissions:            # ← この行を追加
+  contents: write       # ← これでpush許可
 
 jobs:
   update-data:
@@ -31,7 +34,7 @@ jobs:
         run: |
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
-          git status                 # ★ デバッグ用：ステータス確認
+          git status
           git add data/latest_data.csv
           git commit -m "Auto-update latest_data.csv" || echo "No changes to commit"
           git push
