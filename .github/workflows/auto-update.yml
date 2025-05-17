@@ -24,6 +24,7 @@ jobs:
 
       - name: Run scraper
         run: | 
+          if [ -f data ]; then rm -f data; fi
           mkdir -p data
           python scraper.py
 
