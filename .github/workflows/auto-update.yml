@@ -32,6 +32,7 @@ jobs:
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
           git add data/latest_data.csv
-          git commit -m "Auto-update latest_data.csv" || echo "No changes to commit"
+          git commit -m "Auto-update latest_data.csv"
           git push
         continue-on-error: true
+
