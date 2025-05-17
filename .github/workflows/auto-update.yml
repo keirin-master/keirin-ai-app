@@ -1,0 +1,36 @@
+name: Auto Update Data
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # 毎日21:00（JSTだと朝6:00）に実行
+  workflow_dispatch:      # 手動実行も可能にする
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run scraper
+        run: |
+          python scraper.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+          git add latest_data.csv
+          git commit -m "Auto-update latest_data.csv"
+          git push
+        continue-on-error: true
