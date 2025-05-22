@@ -1,3 +1,0 @@
-# dataフォルダは無視するが、CSVファイルは例外とする
-data/*
-!data/latest_data.csv
