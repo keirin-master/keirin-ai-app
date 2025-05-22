@@ -1,0 +1,7 @@
+# SQLiteファイルとダミーCSVはGit追跡対象外
+*.sqlite
+data_dummy.csv
+
+# その他一時ファイル
+*.pyc
+__pycache__/
