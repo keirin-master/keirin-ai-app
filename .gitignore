@@ -1,0 +1,4 @@
+# 無視するファイル
+data_dummy.csv
+*.pyc
+__pycache__/
